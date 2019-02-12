@@ -1,0 +1,50 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<meta charset="utf-8">
+	<title>Objet_JavaScript</title>
+</head>
+<body>
+
+	<script type="text/javascript">
+
+// Définfition de l'objet Person via un constructeur 
+
+	function Person(mustapha, age, sex, parent, work, friends) {
+
+		this.mustapha = mustapha;
+		this.age = age;
+		this.sex = sex;
+		this.parent = parent;
+		this.work = work;
+		this.friends = friends;
+		
+	}
+//On crée des variables qui vont contenir une instance de l'objet Person :
+
+	var vin = new Person('Vincent', 23,'m','aîné', 'JavaScripteur',[]);
+	var an = new Person('Anna',37,'f','femme','Juriste',[]);
+	vin.mustapha = 'Mohamed' // On change le prénom
+	vin.age = 30; //On change l'âge 
+
+
+	alert(vin.mustapha); //Affiche : "Vincent"
+	alert(an.mustapha); // Affiche :"anna"
+
+	alert(vin instanceof Person); // Affiche true
+
+	alert(vin.mustapha + ' a ' + vin.age + ' ans '); // Affiche : "Mohamed a 30 ans "
+
+		
+
+
+
+
+
+
+	</script>
+
+
+
+</body>
+</html>
