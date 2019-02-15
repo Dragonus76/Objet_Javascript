@@ -1,0 +1,42 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<meta charset="utf-8">
+	<title>Objet_Natif</title>
+</head>
+<body>
+
+	<script type="text/javascript">
+		
+
+		var family = {
+    self: 'Sébastien',
+    sister: 'Laurence',
+    brother: 'Ludovic',
+    cousin_1: 'Pauline',
+    cousin_2: 'Guillaume'
+};
+
+family.debug(); // Nous allons créer cette méthode debug()
+
+// Testons si cette méthode n'existe pas déjà !
+if (!Object.prototype.debug) {
+
+    // Créons la méthode
+    Object.prototype.debug = function() {
+        var text = 'Object {\n';
+        
+        for (var i in this) {
+            if (i !== 'debug') {   
+                text += '    [' + i + '] => ' + this[i] + '\n';    
+            }
+        }
+        
+        alert(text + '}');
+    }
+
+}
+	</script>
+
+</body>
+</html>

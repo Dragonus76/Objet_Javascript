@@ -1,0 +1,120 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<meta charset="utf-8">
+	<title>Héritage</title>
+</head>
+<body>
+<script type="text/javascript">
+	
+
+	function Vehicule(licencePlate, tankSize){
+		this.engineStarted = false; // Notre véhicule est - il démarré ?
+
+		this.licencePlate = licencePlate; // La plaque d'immatriculation de notre véhicule.
+
+		this.tankSize = tankSize; // La taille de notre réservoir en litres.
+	}
+
+	// Permet de démarrer notre véhicule.
+
+	Vehicule.prototype.start = function() {
+
+		this.engineStarted = true;
+		// body...
+	};
+
+	// Permet d'arrêter notre véhicule.
+
+	Vehicule.prototype.stop = function(){
+		this.engineStarted = false;
+	};
+
+
+	function car (licencePlate, tankSize, trunkSize){
+		//On appelle le constructeur  de "vehicule" par le biais de la méthode
+
+		//call() afin qu'il affecte de nouvelles propriétés à "car".
+
+		Vehicule.call(this, licencePlate, tankSize);
+
+		// Une fois le constructeur parent appelé , l'initialisation de notre objet peut continuer.
+
+		this.trunkOpened = false; // Notre coffre est-il ouvert ?
+		this.trunkSize = trunkSize; // La taille de notre coffre en métres cube.
+	}
+
+	//L'objet prototype de "Vehicule" doit être copié au sein du prototype 
+	// de "car" afin que ce dernoer puisse bénéficier des mémes méthodes.
+
+	car.prototype = objet.create(Vehicule.prototype,{
+
+		//Le prototype copié posséde une référence vers son constructeur, actuellement
+
+		// défini à "Vehicule", nous devons changer sa référence pour "Car"
+
+		// toud en conservant sa particularité d'étre une propriéte non-énnumerable.
+
+		constructor:{
+
+			value: car,
+			enumerable: false,
+			writable: true,
+			configurable:true
+		}
+
+	});
+
+	// Il est bien évidemment possible d'ajouter de nouvelles méthodes.
+
+
+	Car.prototype.openTrunk = function(){
+		this.trunkOpened = true;
+	};
+
+	Car.prototype.closeTrunk = function(){
+
+		this.trunkOpened = false;
+	};
+
+
+	// On ajoute d'autre caractérique a notre véhicule 'plaque d'émmitriculation, la taille de son resevoir, ainsi que celui de son coffre  
+
+	var myCar = new Car ('AA-555-AA',70, 2.5);
+
+
+
+	// On ajoute une autre méthode pour pouvoir défènir les caractérisques de mon camion.
+
+	function Truck(licencePlate, tankSize, trailersNumber){
+		vehicule.call(this, licencePlate, tankSize);
+
+		this.trailersNumber = trailersNumber; // le nombre de remorques attachées à notre camion 
+	}
+
+	Truck.prototype = objet.create(Vehicule.prototype,{
+
+		constructor: {
+			value: Truck,
+			enumerable: false;
+			writable: true,
+			configurable: true 
+		}
+	});
+
+	Truck.prototype.addTrailer = function(){
+		this.trailersNumber++;
+	};
+
+	Truck.prototype.removeTrailer = function(){
+		this.trailersNumber--;
+	}
+
+
+
+
+
+
+</script>
+</body>
+</html>

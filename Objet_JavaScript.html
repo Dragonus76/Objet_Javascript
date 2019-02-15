@@ -11,20 +11,22 @@
 // Définfition de l'objet Person via un constructeur 
 
 	function Person(mustapha, age, sex, parent, work, friends) {
+    this.mustapha = mustapha;
+    this.age = age;
+    this.sex = sex;
+    this.parent = parent;
+    this.work = work;
+    this.friends = friends;
 
-		this.mustapha = mustapha;
-		this.age = age;
-		this.sex = sex;
-		this.parent = parent;
-		this.work = work;
-		this.friends = friends;
-		
-	}
+    this.addFriend = function(mustapha, age, sex, parent, work, friends) {
+        this.friends.push(new Person(mustapha, age, sex, parent, work, friends));
+    };
+}
 //On crée des variables qui vont contenir une instance de l'objet Person :
 
 	var vin = new Person('Vincent', 23,'m','aîné', 'JavaScripteur',[]);
 	var an = new Person('Anna',37,'f','femme','Juriste',[]);
-	vin.mustapha = 'Mohamed' // On change le prénom
+	vin.nick= 'mustapha' // On change le prénom
 	vin.age = 30; //On change l'âge 
 
 
@@ -34,6 +36,27 @@
 	alert(vin instanceof Person); // Affiche true
 
 	alert(vin.mustapha + ' a ' + vin.age + ' ans '); // Affiche : "Mohamed a 30 ans "
+
+
+	var vin = new Person('ines',9,'f','fille','ecoliére',[]);
+
+	// On ajoure un ami dans le tableau "friends"
+
+	vin.friends.push(new Person('celestin',6,'m','cousin','ecolier aussi',[]));
+
+
+	//  Objet prototype va nous permettre d'ajouter des methodes à un objet. Voici comment ajouter une methode addFriends() à notre ibjet Person : 
+
+	// Le this fait ici aussi référence à l'objet dans lequel s'exécute, c'est a dire l'objet Person 
+
+	// L'ajout de methodes par prototype a l'avantage d etre  indépendant de l'objet,c'est a dire que vosu pouvez défenir votre objet dans un fichier dans un fichier, et ajouter des méthodes dans un autrz fichier (pour autant que les deux fichiers soient incus dans la meme page Web)
+
+	
+ 	 Person.prototype.addFriend = function(mustapha, age, sex, parent, work, friends){
+ 	 		this.friends.push(new Person(mustapha, age, sex, parent, work, friends));
+ 	 }
+
+	alert(vin.friends[0].mustapha); 
 
 		
 
